@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_name": {
+            "value": "PublicVM001"
+        },
+        "storageAccounts_name": {
+            "value": "teststorgaeAacount"
+        },
+        "virtualMachines_Private_name": {
+            "value": "PrivateVM001"
+        },
+        "virtualNetworks_CoreServicesVNet_name": {
+            "value": null
+        },
+        "publicIPAddresses_Public_ip_name": {
+            "value": null
+        },
+        "networkInterfaces_Public_nic_name": {
+            "value": null
+        },
+        "publicIPAddresses_Private_ip_name": {
+            "value": null
+        },
+        "networkInterfaces_Private_nic_name": {
+            "value": null
+        },
+        "networkSecurityGroups_PrivateNSG_name": {
+            "value": null
+        },
+        "networkSecurityGroups_Public_nsg_name": {
+            "value": null
+        },
+        "networkSecurityGroups_Private_nsg_name": {
+            "value": null
+        }
+    }
+}
