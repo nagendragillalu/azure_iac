@@ -2,13 +2,11 @@ from azure.identity import InteractiveBrowserCredential
 from azure.mgmt.network import NetworkManagementClient
 from netaddr import IPNetwork, IPAddress
 import argparse
+import sys
 
-
-# Azure authentication details
-subscription_id = 'ac351f40-7fd1-4017-b05c-af8d13a0c13a'
 
 # Function to authenticate with Azure and get Azure management client
-def get_azure_client():
+def get_azure_client(subscription_id):
     credential = InteractiveBrowserCredential()
     client = NetworkManagementClient(credential, subscription_id)
     return client
@@ -35,9 +33,13 @@ def get_nic_in_use(client,subnet,ip_address):
 def main():
     parser = argparse.ArgumentParser(description='Azure CLI Tool to get IP subnet details and any attched NIC')
     parser.add_argument('ip_address', help='IP address')
+    parser.add_argument('subscription_id', help='Azure Subscription ID')
+    if len(sys.argv)==1:
+        parser.print_help(sys.stderr)
+        sys.exit(1)
     args = parser.parse_args()
 
-    client = get_azure_client()
+    client = get_azure_client(args.subscription_id)
     subnet = get_subnet_by_ip(client, args.ip_address)
     print(f"Subnet name:\t{subnet.name}")
     print(f"IPv4 Addr Prefix:\t{subnet.address_prefix}")
